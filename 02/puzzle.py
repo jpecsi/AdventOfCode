@@ -100,21 +100,15 @@ def solvePart2():
     
     for report in data:
         line = report.split()
-        dampen = True
+
         if (checkAllIncreasing(line) or checkAllDecreasing(line)) and checkSafeReports(line):
             safe_reports += 1
         else:
-            for idx,num in enumerate(line):
-    
-                if dampen:
-                    work = copy.deepcopy(line)
-                    try:
-                        work.pop(idx+1)
-                        if (checkAllIncreasing(work) or checkAllDecreasing(work)) and checkSafeReports(work):
-                            safe_reports += 1
-                            dampen = False
-                    except:
-                        dampen = False
+            for i in range(len(line)):
+                work = line[:i] + line[i+1:]  
+                if (checkAllIncreasing(work) or checkAllDecreasing(work)) and checkSafeReports(work):
+                    safe_reports += 1
+                    break
 
     return safe_reports
 # ================= #
