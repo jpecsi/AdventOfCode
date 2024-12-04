@@ -13,7 +13,7 @@ import copy
 data = []
 
 # Read the input file
-input_file = open("sample","r")
+input_file = open("input","r")
 for line in input_file:
     data.append(line)
 # ================= #
@@ -104,16 +104,13 @@ def solvePart2():
         if (checkAllIncreasing(line) or checkAllDecreasing(line)) and checkSafeReports(line):
             safe_reports += 1
         else:
-            print("Working List: " + str(line))
             for idx,num in enumerate(line):
     
                 if dampen:
                     work = copy.deepcopy(line)
                     try:
                         work.pop(idx+1)
-                        print(work)
                         if (checkAllIncreasing(work) or checkAllDecreasing(work)) and checkSafeReports(work):
-                            print("ADDED")
                             safe_reports += 1
                             dampen = False
                     except:
